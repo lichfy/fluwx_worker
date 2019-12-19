@@ -1,0 +1,17 @@
+.DS_Store
+.dart_tool/
+
+.packages
+.pub/
+
+build/
+.metadata
+.project
+*.iml
+*.lock
+.idea/
+.svn/
+.classpath
+.settings/
+gradle/
+*.jks
