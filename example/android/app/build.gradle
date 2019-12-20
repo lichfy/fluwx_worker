@@ -33,7 +33,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.jingtun.flutter_echocking"
+        applicationId "example.fluwx"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()
@@ -42,12 +42,8 @@ android {
     }
 
     signingConfigs {
-        debug {
-            keyAlias 'echocking'
-            keyPassword '2019$Echock'
-            storeFile file('../echocking.jks')
-            storePassword '2019$Echock'
-        }
+	debug {
+	}
     }
 
     buildTypes {

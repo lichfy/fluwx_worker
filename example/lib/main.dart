@@ -14,9 +14,9 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   var _result = 'None';
 
-  final schema = 'wwauth38302c6e89219150000013';
-  final corpId = 'ww38302c6e89219150';
-  final agentId = '1000013';
+  final schema = 'wwauth38302c6e89219150000XXX';//替换成自己的
+  final corpId = 'ww38302c6e89219XXX';
+  final agentId = '1000XXX';
 
   @override
   void initState() {
