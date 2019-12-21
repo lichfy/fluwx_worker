@@ -1,55 +1,90 @@
 #import "FluwxWorkerPlugin.h"
-#import "APIHandler.h"
+#import "WWKApi.h"
+
+@interface FluwxWorkerPlugin () <WWKApiDelegate>
+
+@end
 
 @implementation FluwxWorkerPlugin
 
-BOOL isWeChatRegistered = NO;
-APIHandler *_APIHandler;
+BOOL isWWXRegistered = NO;
+FlutterMethodChannel *channel;
 
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
-  FlutterMethodChannel* channel = [FlutterMethodChannel
+  //FlutterMethodChannel* 
+  channel = [FlutterMethodChannel
       methodChannelWithName:@"fluwx_worker"
             binaryMessenger:[registrar messenger]];
   FluwxWorkerPlugin* instance = [[FluwxWorkerPlugin alloc] init];
-  [[ResponseHandler defaultManager] setMethodChannel:channel];
   [registrar addMethodCallDelegate:instance channel:channel];
-}
-
-- (instancetype)initWithRegistrar:(NSObject <FlutterPluginRegistrar> *)registrar methodChannel:(FlutterMethodChannel *)flutterMethodChannel {
-    self = [super init];
-    if (self) {
-        _APIHandler = [[APIHandler alloc] init];
-    }
-
-    return self;
+  [registrar addApplicationDelegate:instance];
 }
 
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
    if ([@"registerApp" isEqualToString:call.method]) {
-        [_APIHandler registerApp:call result:result];
+     
+        if (isWWXRegistered) {
+            result(@YES);
+            return;
+        }
+
+        NSString *schema = call.arguments[@"schema"];
+        NSString *corpId = call.arguments[@"corpId"];
+        NSString *agentId = call.arguments[@"agentId"];
+        isWWXRegistered = [WWKApi registerApp:schema corpId:corpId agentId:agentId];
+
+        result(@(isWWXRegistered));
         return;
     }
 
     if ([@"isWeChatInstalled" isEqualToString:call.method]) {
-        [_APIHandler checkWeChatInstallation:call result:result];
+        if (!isWWXRegistered) {
+            result([FlutterError errorWithCode:@"wwkapi not configured" message:@"please config  wwkapi first" details:nil]);
+            return;
+        }else{
+            result(@([WWKApi isAppInstalled]));
+        }
         return;
     }
 
-
     if ([@"sendAuth" isEqualToString:call.method]) {
-        [_APIHandler handleAuth:call result:result];
+        NSString *state = call.arguments[@"state"];
+        WWKSSOReq *req = [[WWKSSOReq alloc] init];
+        req.state = state;
+
+        [WWKApi sendReq:req];
+        BOOL done = [WWKApi sendReq:req];
+
+        result(@(done));
         return;
     }
 
     result(FlutterMethodNotImplemented);  
 }
 
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    return [self handleOpenURL:url delegate:[FluwxResponseHandler defaultManager]];
+- (void)onResp:(WWKBaseResp *)resp {
+    /* SSO的回调 */
+    if ([resp isKindOfClass:[WWKSSOResp class]]) {
+        WWKSSOResp *authResp = (WWKSSOResp *)resp;
+        NSDictionary *result = @{
+                @"errCode": @(authResp.errCode),
+                @"code": [self nilToEmpty:authResp.code],
+                @"state": [self nilToEmpty:authResp.state]
+        };
+        [channel invokeMethod:@"onAuthResponse" arguments:result];
+    }
 }
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(id)annotation {
-    return [self handleOpenURL:url delegate:[ResponseHandler defaultManager]];
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return [self handleOpenURL:url sourceApplication:nil];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [self handleOpenURL:url sourceApplication:sourceApplication];
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *, id> *)options {
+    return [WWKApi handleOpenURL:url delegate:self];
 }
 
 - (BOOL)handleOpenURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication {
@@ -57,12 +92,16 @@ APIHandler *_APIHandler;
      * @param url 外部调用传入的url
      * @param delegate 当前类需要实现WWKApiDelegate对应的方法
      */
-    return [WWKApi handleOpenURL:url delegate:delegate:[ResponseHandler defaultManager]];
+    return [WWKApi handleOpenURL:url delegate:self];
 }
 
 - (void)unregisterApp:(FlutterMethodCall *)call result:(FlutterResult)result {
-    isWeChatRegistered = false;
+    isWWXRegistered = false;
     result(@YES);
+}
+
+- (NSString *)nilToEmpty:(NSString *)string {
+    return string == nil?@"":string;
 }
 
 @end
