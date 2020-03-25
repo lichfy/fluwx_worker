@@ -18,40 +18,40 @@ public interface IWWAPI {
 
     /**
      *
-     * @return ÊÇ·ñ°²×°ÁËÆóÒµÎ¢ĞÅ
+     * @return æ˜¯å¦å®‰è£…äº†ä¼ä¸šå¾®ä¿¡
      */
     boolean isWWAppInstalled();
 
     /**
      *
-     * @return ÊÇ·ñÖ§³Öapi
+     * @return æ˜¯å¦æ”¯æŒapi
      */
     boolean isWWAppSupportAPI();
 
     /**
      *
-     * @return °²×°µÄÆóÒµÎ¢ĞÅ°æ±¾
+     * @return å®‰è£…çš„ä¼ä¸šå¾®ä¿¡ç‰ˆæœ¬
      */
     int getWWAppSupportAPI();
 
     /**
-     * ´ò¿ªÆóÒµÎ¢ĞÅ
+     * æ‰“å¼€ä¼ä¸šå¾®ä¿¡
      * @return
      */
     boolean openWWApp();
 
     /**
      *
-     * @param ·¢ËÍµÄÏûÏ¢
-     * @return ÏûÏ¢ÊÇ·ñºÏ·¨
+     * @param å‘é€çš„æ¶ˆæ¯
+     * @return æ¶ˆæ¯æ˜¯å¦åˆæ³•
      */
     boolean sendMessage(BaseMessage var1);
 
     /**
      *
-     * @param var1 ·¢ËÍµÄ°ü
-     * @param callback »Ø°ü
-     * @return ÏûÏ¢ÊÇ·ñºÏ·¨
+     * @param var1 å‘é€çš„åŒ…
+     * @param callback å›åŒ…
+     * @return æ¶ˆæ¯æ˜¯å¦åˆæ³•
      */
     boolean sendMessage(BaseMessage var1, IWWAPIEventHandler callback);
     void detach();

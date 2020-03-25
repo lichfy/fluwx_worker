@@ -5,13 +5,13 @@ import android.util.Log;
 
 /**
  * Created by hu on 16/5/30.
- * 文本
+ * 鏂囨湰
  */
 public class WWMediaText extends WWMediaMessage.WWMediaObject {
     private static final String TAG = "WWAPI.WWMediaText";
     private static final int LENGTH_LIMIT = 10240;
     /**
-     * 文本
+     * 鏂囨湰
      */
     public String text;
 

@@ -8,12 +8,12 @@ import android.util.Log;
 
 /**
  * Created by hu on 16/8/1.
- * ÏûÏ¢ºÏ²¢×ª·¢
+ * æ¶ˆæ¯åˆå¹¶è½¬å‘
  */
 public class WWMediaMergedConvs extends WWMediaMessage.WWMediaObject {
     private static final String TAG = "WWAPI.WWMediaConv";
     /**
-     * ÏûÏ¢ÁĞ±í ¿ÉÒÔÊÇ ÕâÀï¶¨ÒåµÄ¸÷ÖÖÏûÏ¢ºÍ¼¯ºÏ
+     * æ¶ˆæ¯åˆ—è¡¨ å¯ä»¥æ˜¯ è¿™é‡Œå®šä¹‰çš„å„ç§æ¶ˆæ¯å’Œé›†åˆ
      */
     public List<WWMediaConversation> messages = new ArrayList<WWMediaConversation>();
 

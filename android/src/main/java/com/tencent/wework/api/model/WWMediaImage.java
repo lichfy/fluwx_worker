@@ -6,7 +6,7 @@ import android.graphics.Bitmap;
 
 /**
  * Created by hu on 16/5/30.
- * ͼƬ
+ *
  */
 public class WWMediaImage extends WWMediaFile {
     private static final String TAG = "WWAPI.WWMediaImage";

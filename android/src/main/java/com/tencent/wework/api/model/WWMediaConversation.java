@@ -8,26 +8,26 @@ import android.util.Log;
 
 /**
  * Created by hu on 16/8/1.
- * µ¥ÌõÁÄÌì¼ÇÂ¼ĞÅÏ¢
+ * å•æ¡èŠå¤©è®°å½•ä¿¡æ¯
  */
 public class WWMediaConversation extends WWMediaMessage.WWMediaObject {
     private static final String TAG = "WWAPI.WWMediaConv";
     private static final int CONTENT_LENGTH_LIMIT = 10485760;
     private static final int PATH_LENGTH_LIMIT = 10240;
     /**
-     * ÕâÌõÏûÏ¢µÄ·¢ĞÅÈËêÇ³Æ
+     * è¿™æ¡æ¶ˆæ¯çš„å‘ä¿¡äººæ˜µç§°
      */
     public String name;
     /**
-     * ÏûÏ¢Ê±¼ä
+     * æ¶ˆæ¯æ—¶é—´
      */
     public long date;//ms
     /**
-     * ·¢ĞÅÈËÍ·Ïñ
+     * å‘ä¿¡äººå¤´åƒ
      */
     public byte[] avatarData;
     /**
-     * ·¢ĞÅÈËÍ·Ïñurl
+     * å‘ä¿¡äººå¤´åƒurl
      */
     public String avatarPath;
     public WWMediaMessage.WWMediaObject message;

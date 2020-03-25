@@ -7,7 +7,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 /**
- * ÀàµÄ×Ö¶Î·½·¨»ñÈ¡¹¤¾ßÀà£¬ÎªÁËÌá¸ßĞ§ÂÊ£¬²ÉÓÃÁË×´Ì¬»úµÄ¹¤×÷·½Ê½
+ * ç±»çš„å­—æ®µæ–¹æ³•è·å–å·¥å…·ç±»ï¼Œä¸ºäº†æé«˜æ•ˆç‡ï¼Œé‡‡ç”¨äº†çŠ¶æ€æœºçš„å·¥ä½œæ–¹å¼
  * 
  * @author boyliang
  */
@@ -18,11 +18,11 @@ public final class ReflecterHelper {
 	public static Class<?> mCurrentClass;
 
 	/**
-	 * ÉèÖÃ
+	 * è®¾ç½®
 	 * 
 	 * @param name
-	 *            ÀàµÄÍêÕûÂ·¾¶
-	 * @return ÊÇ·ñÉèÖÃ³É¹¦
+	 *            ç±»çš„å®Œæ•´è·¯å¾„
+	 * @return æ˜¯å¦è®¾ç½®æˆåŠŸ
 	 */
 	public final static boolean setClass(String name) {
 		Class<?> tmpClass = null;
@@ -84,7 +84,7 @@ public final class ReflecterHelper {
 	}
 
 	/**
-	 * µÃµ½Ä³¸öÀàµÄ¾²Ì¬ÊôĞÔ
+	 * å¾—åˆ°æŸä¸ªç±»çš„é™æ€å±æ€§
 	 * 
 	 * @param className
 	 * @param fieldName
@@ -127,7 +127,7 @@ public final class ReflecterHelper {
 	}
 
 	/**
-	 * ÊµÀı»¯¶ÔÏó£»£» Ö»Ö§³Ö Ã»ÓĞnull¶ÔÏóºÍ Ö»ÓĞString¶ÔÏóÊÇnullµÄÇé¿ö
+	 * å®ä¾‹åŒ–å¯¹è±¡ï¼›ï¼› åªæ”¯æŒ æ²¡æœ‰nullå¯¹è±¡å’Œ åªæœ‰Stringå¯¹è±¡æ˜¯nullçš„æƒ…å†µ
 	 * 
 	 * @param className
 	 * @param args
@@ -142,7 +142,7 @@ public final class ReflecterHelper {
 	}
 
 	/**
-	 * ÊµÀı»¯¶ÔÏó
+	 * å®ä¾‹åŒ–å¯¹è±¡
 	 * 
 	 * @param className
 	 * @param args
@@ -154,7 +154,7 @@ public final class ReflecterHelper {
 	}
 
 	/**
-	 * Ö´ĞĞÄ³¶ÔÏóµÄ·½·¨£» Ö»Ö§³Ö Ã»ÓĞnull¶ÔÏóºÍ Ö»ÓĞString¶ÔÏóÊÇnullµÄÇé¿ö
+	 * æ‰§è¡ŒæŸå¯¹è±¡çš„æ–¹æ³•ï¼› åªæ”¯æŒ æ²¡æœ‰nullå¯¹è±¡å’Œ åªæœ‰Stringå¯¹è±¡æ˜¯nullçš„æƒ…å†µ
 	 * 
 	 * @param owner
 	 * @param methodName
@@ -168,7 +168,7 @@ public final class ReflecterHelper {
 	}
 
 	/**
-	 * Ö´ĞĞÄ³¶ÔÏóµÄÎŞ²Î·½·¨
+	 * æ‰§è¡ŒæŸå¯¹è±¡çš„æ— å‚æ–¹æ³•
 	 * 
 	 * @param owner
 	 * @param methodName
@@ -181,7 +181,7 @@ public final class ReflecterHelper {
 	}
 
 	/**
-	 * Ö´ĞĞÄ³¶ÔÏóµÄ·½·¨
+	 * æ‰§è¡ŒæŸå¯¹è±¡çš„æ–¹æ³•
 	 * 
 	 * @param owner
 	 * @param methodName
@@ -209,7 +209,7 @@ public final class ReflecterHelper {
 	}
 
 	/**
-	 * »ñÈ¡Ä³¶ÔÏóµÄÊôĞÔ
+	 * è·å–æŸå¯¹è±¡çš„å±æ€§
 	 * 
 	 * @param owner
 	 * @param fieldName
@@ -351,7 +351,7 @@ public final class ReflecterHelper {
 	}
 
 	/**
-	 * Ö»Ö§³Ö Ã»ÓĞnull¶ÔÏóºÍ Ö»ÓĞString¶ÔÏóÊÇnullµÄÇé¿ö
+	 * åªæ”¯æŒ æ²¡æœ‰nullå¯¹è±¡å’Œ åªæœ‰Stringå¯¹è±¡æ˜¯nullçš„æƒ…å†µ
 	 * 
 	 * @param className
 	 * @param methodName
