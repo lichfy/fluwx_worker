@@ -2,7 +2,7 @@ package com.tencent.wework.api.model;
 
 /**
  * Created by hu on 16/5/30.
- * ÊÓÆµ
+ * è§†é¢‘
  */
 public class WWMediaVideo extends WWMediaFile {
     private static final String TAG = "WWAPI.WWMediaVideo";

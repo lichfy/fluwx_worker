@@ -7,17 +7,17 @@ import com.tencent.wework.api.model.WWMediaMessage.WWMediaObject;
 
 /**
  * Created by hu on 16/5/30.
- * Á´½Ó
+ * é“¾æ¥
  */
 public class WWMediaLink extends WWMediaObject {
     private static final String TAG = "WWAPI.WWMediaLink";
     private static final int LENGTH_LIMIT = 10240;
     /**
-     * Á´½ÓÍøÖ·
+     * é“¾æ¥ç½‘å€
      */
     public String webpageUrl;
     /**
-     * Á´½ÓÍ¼±ê
+     * é“¾æ¥å›¾æ ‡
      */
     public String thumbUrl;
 
