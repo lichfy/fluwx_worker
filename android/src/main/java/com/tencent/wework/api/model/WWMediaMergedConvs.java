@@ -27,7 +27,7 @@ public class WWMediaMergedConvs extends WWMediaMessage.WWMediaObject {
 
 	@Override
 	public int getType() {
-		return WWMediaMessage.WWMediaObject.TYPE_MERGED_CONVERSATION;
+		return WWMediaObject.TYPE_MERGED_CONVERSATION;
 	}
 
 	@Override

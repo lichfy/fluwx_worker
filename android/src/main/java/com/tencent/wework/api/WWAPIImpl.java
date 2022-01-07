@@ -1,5 +1,6 @@
 package com.tencent.wework.api;
 
+import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -141,12 +142,15 @@ final public class WWAPIImpl implements IWWAPI {
         context.unregisterReceiver(mReciver);
     }
 
+    @SuppressLint("PackageManagerGetSignatures")
     private String getSignature(String pkg) {
         try {
             PackageInfo var1;
             var1 = context.getPackageManager().getPackageInfo(pkg, PackageManager.GET_SIGNATURES);
             return MD5Encode(var1.signatures[0].toByteArray());
         } catch (Throwable var2) {
+            System.out.println("get sign failed:");
+            var2.printStackTrace();
         }
         return "";
     }
@@ -174,6 +178,7 @@ final public class WWAPIImpl implements IWWAPI {
 
     private boolean isWW(String pkg) {
         try {
+            System.out.println("pkg signature:" + getSignature(pkg));
             return pkg.equals("com.tencent.wework") && getSignature(pkg).equals("011A40266C8C75D181DDD8E4DDC50075");
         } catch (Throwable var2) {
             return false;

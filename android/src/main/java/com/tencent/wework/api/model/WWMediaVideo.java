@@ -9,6 +9,6 @@ public class WWMediaVideo extends WWMediaFile {
 
     @Override
     public int getType() {
-        return WWMediaMessage.WWMediaObject.TYPE_VIDEO;
+        return WWMediaObject.TYPE_VIDEO;
     }
 }
