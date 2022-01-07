@@ -18,7 +18,7 @@ public class FluwxWorkerPlugin implements FlutterPlugin,MethodCallHandler {
     channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "fluwx_worker");
     APIHandler.setFlutterPluginBinding(flutterPluginBinding);
     ResponseHandler.setMethodChannel(channel);
-    channel.setMethodCallHandler(new FluwxWorkerPlugin());
+    channel.setMethodCallHandler(this);
   }
 
   @Override
