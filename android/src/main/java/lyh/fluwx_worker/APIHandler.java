@@ -20,10 +20,10 @@ class APIHandler {
     }
 
     static void registerApp(MethodCall call, MethodChannel.Result result){
-        if (iwwapi != null){
-            result.success(true);
-            return;
-        }
+//        if (iwwapi != null){
+//            result.success(true);
+//            return;
+//        }
 
         Object schema = call.argument("schema");
         if (schema == null || schema.toString().length() == 0){

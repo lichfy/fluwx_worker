@@ -24,7 +24,7 @@ public class WWMediaText extends WWMediaMessage.WWMediaObject {
 
     @Override
     public int getType() {
-        return WWMediaMessage.WWMediaObject.TYPE_TEXT;
+        return WWMediaObject.TYPE_TEXT;
     }
 
     @Override

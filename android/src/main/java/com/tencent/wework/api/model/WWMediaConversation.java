@@ -30,7 +30,7 @@ public class WWMediaConversation extends WWMediaMessage.WWMediaObject {
      * 发信人头像url
      */
     public String avatarPath;
-    public WWMediaMessage.WWMediaObject message;
+    public WWMediaObject message;
 
     public WWMediaConversation() {
     }
@@ -52,7 +52,7 @@ public class WWMediaConversation extends WWMediaMessage.WWMediaObject {
 
     @Override
     public int getType() {
-        return WWMediaMessage.WWMediaObject.TYPE_CONVERSATION;
+        return WWMediaObject.TYPE_CONVERSATION;
     }
 
     @Override

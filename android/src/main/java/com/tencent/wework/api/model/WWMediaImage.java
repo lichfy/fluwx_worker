@@ -6,7 +6,7 @@ import android.graphics.Bitmap;
 
 /**
  * Created by hu on 16/5/30.
- *
+ * 图片
  */
 public class WWMediaImage extends WWMediaFile {
     private static final String TAG = "WWAPI.WWMediaImage";
@@ -31,6 +31,6 @@ public class WWMediaImage extends WWMediaFile {
 
     @Override
     public int getType() {
-        return WWMediaMessage.WWMediaObject.TYPE_IMAGE;
+        return WWMediaObject.TYPE_IMAGE;
     }
 }
