@@ -3,10 +3,11 @@
 //  wxwork
 //
 //  Created by WXWork on 16/5/25.
-//  Copyright © 2016年 rdgz. All rights reserved.
+//  Copyright © 2019年 Tencent. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "WWKApiObject.h"
 
 #pragma mark - WWKApiDelegate
@@ -40,6 +41,12 @@ typedef NS_ENUM(NSInteger, WWKDiplayNameType) {
  */
 - (void)onResp:(WWKBaseResp *)resp;
 
+/*! @brief SessionKey更新回调
+ *
+ * 需要设置updateSessionKeyIfNeeded:YES，并且满足企业微信sessionKey更新策略才会调用
+ * @param
+ */
+- (void)onSessionKeyUpdate:(NSString *)newSessionKey;
 @end
 
 
@@ -61,6 +68,17 @@ typedef NS_ENUM(NSInteger, WWKDiplayNameType) {
  */
 + (BOOL)registerApp:(NSString *)appid;
 
+/*! @brief WWKApi的成员函数，向企业微信终端程序注册第三方应用。
+ *
+ * 需要在每次启动第三方应用程序时调用。第一次调用后，会在企业微信的可用应用列表中出现。
+ * iOS7及以上系统需要调起一次企业微信才会出现在企业微信的可用应用列表中。
+ * @attention 请保证在主线程中调用此函数
+ * @param appid 第三方应用的appid
+ * @param scheme 当前app的scheme
+ * @return 成功返回YES，失败返回NO。
+ */
++ (BOOL)registerAppID:(NSString *)appid schema:(NSString *)schema;
+
 
 
 /*! @brief WWKApi的成员函数，向企业微信终端程序注册企业应用。
@@ -75,6 +93,11 @@ typedef NS_ENUM(NSInteger, WWKDiplayNameType) {
 + (BOOL)registerApp:(NSString *)appid corpId:(NSString *)corpid agentId:(NSString *)agentid;
 
 
+/*! @brief 是否必要时更新sessionKey，默认为NO
+ *
+ * @param url 企业微信根据安全策略自动更新sessionKey，如果有更新，会触发onSessionKeyUpdate:回调
+ */
++ (void)updateSessionKeyIfNeeded:(BOOL)enable;
 
 /*! @brief 处理企业微信通过URL启动App时传递的数据
  *
@@ -119,7 +142,13 @@ typedef NS_ENUM(NSInteger, WWKDiplayNameType) {
  */
 + (BOOL)openApp;
 
-
+/*!
+ * @brief 启动登录流程。
+ * @param navigationController 当前页面的导航栏控制器
+ * @param state 第三方应用传入的值，登录成功后会透传给第三方应用
+ * @see WWKSSOReq
+ */
++ (void)startSSOLogin:(NSString *)state fromNavigationController:(UINavigationController *)navigationController;
 
 /*! @brief 发送请求到企业微信，等待企业微信返回onResp
  *
@@ -148,5 +177,22 @@ typedef NS_ENUM(NSInteger, WWKDiplayNameType) {
  */
 + (WWKDiplayNameType)displayNameType;
 
+/*! @brief 设置登录态返回的sessionKey
+ *
+ */
++ (void)setSessionKey:(NSString *)sessionKey;
 
+/*! @brief 初始化OpenData
+*
+* @以block的形式返回成功或者失败
+*/
++(void)initOpenData:(void (^)(BOOL isSucc))completion;
+
+/*! @brief 获取成员或者部门的详细信息
+*
+* @param 传入WWKOpenDataItem输入，SDK会获取部门或用户名并以block的形式返回
+* 需要initOpenData返回成功后才能调用
+* @see WWKOpenDataItem
+*/
++(void)getOpenData:(NSArray<WWKOpenDataItem *> *)dataList completion:(void (^)(NSError *error,NSArray<WWKOpenDataItem *> *dataArray))completion;
 @end
